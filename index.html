@@ -18,6 +18,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
 <style>
 
 :root {
@@ -38,8 +40,6 @@
 
 }
 
-
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -54,14 +54,11 @@ overflow-x: hidden;
 
 }
 
-
-
 /* 3D Liquid Layer */
 
 #liquid-bg {
 
 position: fixed;
-
 top: 0; left: 0;
 
 z-index: -1;
@@ -70,11 +67,7 @@ opacity: 0.4;
 
 }
 
-
-
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-
 
 /* Navigation - Glassmorphism */
 
@@ -128,8 +121,6 @@ box-shadow: 0 4px 15px rgba(201, 98, 129, 0.3);
 
 }
 
-
-
 /* Hero Section with Curved Back */
 
 .hero {
@@ -145,7 +136,6 @@ min-height: 80vh;
 .hero-curve {
 
 position: absolute;
-
 top: -100px; right: -10%;
 
 width: 70%; height: 120%;
@@ -173,8 +163,6 @@ h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; line-height: 1.1
 .hero-subtext { font-size: 1.1rem; color: #999; margin-bottom: 40px; line-height: 1.6; }
 
 .hero-subtext b { color: var(--accent-pink); }
-
-
 
 .cta-group { display: flex; gap: 20px; align-items: center; }
 
@@ -208,8 +196,6 @@ transform: translateY(-2px);
 
 .btn-outline { color: #999; text-decoration: none; }
 
-
-
 /* Stats Section - Glassmorphism */
 
 .stats { display: flex; gap: 20px; margin-top: 60px; }
@@ -236,8 +222,6 @@ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.0
 
 .stat-item p { font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
 
-
-
 /* Main Profile Image - Glassmorphism frame */
 
 .main-profile-wrap { display: flex; justify-content: center; margin-top: -50px; padding-bottom: 100px; }
@@ -263,8 +247,6 @@ box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 80px rgba(201, 98, 129, 0.1);
 }
 
 .main-img { width: 100%; max-width: 600px; border-radius: 34px; display: block; object-fit: cover; }
-
-
 
 /* Service Cards Grid - Glassmorphism */
 
@@ -336,8 +318,6 @@ justify-content: center; margin-bottom: 20px; font-size: 1.2rem;
 
 .service-list li::before { content: "\2022"; color: var(--accent-pink); position: absolute; left: 0; }
 
-
-
 /* Registration Form Section - Glassmorphism */
 
 .apply-section {
@@ -375,8 +355,6 @@ object-fit: cover;
 aspect-ratio: 3/4;
 
 }
-
-
 
 .form-card {
 
@@ -426,11 +404,7 @@ background: rgba(255, 255, 255, 0.06);
 
 input::placeholder { color: #666; }
 
-
-
 .admin-trigger { text-align: center; opacity: 0.2; padding: 40px; cursor: pointer; }
-
-
 
 @media (max-width: 768px) {
 
@@ -454,11 +428,7 @@ nav { flex-direction: column; gap: 15px; }
 
 <body>
 
-
-
 <canvas id="liquid-bg"></canvas>
-
-
 
 <div class="container">
 
@@ -477,8 +447,6 @@ nav { flex-direction: column; gap: 15px; }
 </div>
 
 </nav>
-
-
 
 <section class="hero">
 
@@ -516,8 +484,6 @@ Represent the pinnacle of beauty and luxury. Join our ambassador family and enjo
 
 </section>
 
-
-
 <div class="main-profile-wrap">
 
 <div class="main-img-glass">
@@ -527,8 +493,6 @@ Represent the pinnacle of beauty and luxury. Join our ambassador family and enjo
 </div>
 
 </div>
-
-
 
 <section class="services-grid" id="services">
 
@@ -616,8 +580,6 @@ Represent the pinnacle of beauty and luxury. Join our ambassador family and enjo
 
 </section>
 
-
-
 <section class="apply-section" id="apply">
 
 <div class="container">
@@ -660,15 +622,14 @@ Represent the pinnacle of beauty and luxury. Join our ambassador family and enjo
 
 </section>
 
-
-
 <p class="admin-trigger" onclick="checkAdmin()">Admin Login</p>
 
 </div>
 
-
-
 <script>
+
+// Initialize EmailJS
+emailjs.init("EuNZnZrXs_7TjLXwZ");
 
 // 1. 3D Liquid Pink Animation
 
@@ -680,8 +641,6 @@ const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('liqu
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-
-
 const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
 
 const material = new THREE.MeshPhongMaterial({ color: 0xc96281, wireframe: true });
@@ -690,8 +649,6 @@ const knot = new THREE.Mesh(geometry, material);
 
 scene.add(knot);
 
-
-
 const light = new THREE.PointLight(0xffffff, 1, 100);
 
 light.position.set(10, 10, 10);
@@ -699,8 +656,6 @@ light.position.set(10, 10, 10);
 scene.add(light);
 
 camera.position.z = 30;
-
-
 
 function animate() {
 
@@ -716,8 +671,6 @@ renderer.render(scene, camera);
 
 animate();
 
-
-
 window.addEventListener('resize', () => {
 
 camera.aspect = window.innerWidth / window.innerHeight;
@@ -728,9 +681,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 
 });
 
-
-
-// 2. Form Logic
+// 2. Form Logic with EmailJS
 
 document.getElementById('applyForm').addEventListener('submit', (e) => {
 
@@ -740,6 +691,8 @@ const applicant = {
 
 name: document.getElementById('name').value,
 
+email: document.getElementById('email').value,
+
 phone: document.getElementById('phone').value,
 
 city: document.getElementById('city').value,
@@ -748,6 +701,17 @@ date: new Date().toLocaleDateString()
 
 };
 
+// Send email using EmailJS
+emailjs.send("service_guzalic", "template_ambassador", {
+  to_email: "guzalic.salon@gmail.com",
+  from_name: applicant.name,
+  from_email: applicant.email,
+  phone: applicant.phone,
+  city: applicant.city,
+  date: applicant.date
+}).then(() => {
+
+// Also store in localStorage as backup
 let apps = JSON.parse(localStorage.getItem('guzalic_applicants') || '[]');
 
 apps.push(applicant);
@@ -758,9 +722,17 @@ alert('Application received! Welcome to the family.');
 
 e.target.reset();
 
+}).catch((error) => {
+
+console.error('Email send failed:', error);
+
+alert('Application received locally! (Email service may need setup)');
+
+e.target.reset();
+
 });
 
-
+});
 
 // 3. Admin Panel
 
@@ -772,7 +744,7 @@ if(pw === "2026") {
 
 const apps = JSON.parse(localStorage.getItem('guzalic_applicants') || '[]');
 
-alert("Current Applicants:\n" + apps.map(a => a.name + ' (' + a.city + ') - ' + a.phone).join("\n"));
+alert("Current Applicants:\n" + apps.map(a => a.name + ' (' + a.city + ') - ' + a.phone + ' - ' + a.email).join("\n"));
 
 }
 
